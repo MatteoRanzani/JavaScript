@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella </title>
+    <style>
+        img {
+          max-width: 200px;
+        }
+        table {
+          font-size:2em;
+          text-align: center;
+        }
+      </style>
+</head>
+<body>
+   
+<table>
+    <tbody id="tbody"></tbody>
+</table>
+<p>Schiaccia per inserire i dati richiesti</p>
+
+    <button onclick="calcola()">SCHIACCIA</button>
+ 
+    <script>
+        function calcola() {
+            let nGatti= Number(prompt("Inserisci il numero di gatti"));
+            let gattiFila= Number(prompt("Inserisci il numero di gatti per fila"));
+            document.getElementById("gatti").innerHTML="Il numero di file è: "+Math.ceil(nGatti/gattiFila);
+            mancanti=((Math.ceil(nGatti/gattiFila))*(gattiFila))
+            if (mancanti>nGatti)
+                document.getElementById("manca").innerHTML="Gatti mancanti: "+(mancanti-nGatti);
+            else
+                document.getElementById("manca").innerHTML="Gatti mancanti: "+(mancanti-nGatti);
+        }
+        //Aggiungi Riga
+        function aggiungiRiga(){
+            riga = document.createElement("tr");
+            document.getElementById("tbody").appendChild(riga);
+            alert("Riga vuota Creata!");
+        }
+ 
+        //Aggiungi Cella
+        function aggiungiColonna(){
+            let td = document.createElement("td");
+            let img = document.createElement("img");
+            img.src = ("https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            td.appendChild(img);
+            riga.appendChild(td);
+        }
+    </script>
+</body>
+</html>
+

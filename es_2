@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Schiaccia il bottone per inserire i numeri, inserire zero per terminare</p>
+
+    <button onclick="calcola()">SCHIACCIA</button>
+
+    <p id="somma"></p>
+    <script>
+        function calcola() {
+            vett= new Array();
+            let n,Somma=0;
+            do{
+                do {
+                    n= Number(prompt("Inserisci un numero","inserisci"));
+                    if(isNaN(n))
+                        alert("Non hai inserito il numero")
+                    else
+                        Somma+=n;
+                }while(isNaN(n))
+
+                    
+                
+            }while(n!=0)
+        }
+    </script>
+</body>
+</html>

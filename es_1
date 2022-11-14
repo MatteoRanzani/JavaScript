@@ -1,0 +1,86 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolletta</title>
+</head>
+<body>
+    <h1>Bolletta 1</h1>
+    <input type="text" name="" id="codice">Codice cliente"<br>
+    <input type="text" name="" id="consumo" >Consumo in KW<br>
+    <input type="text" name="" id="iva" disabled  value="0.22">IVA<br>
+    <input type="text" name="" id="costokw" disabled  value="0.03">Costo KW<br>
+    <input type="text" name="" id="canone" disabled value="20">Canone<br>
+    <button id="add" onclick="inserisci()">Inserisci</button>
+    <button id="add" onclick="mostra()">Mostra</button>
+    <br>
+
+    <table border="1" id="tab">
+        <thead>
+        <tr>
+            <td><b>Codice</b></td>
+            <td><b>Consumo*Costo KWH</b></td>
+            <td><b>Canone</b></td>
+            <td><b>Iva</b></td>
+            <td><b>Totale</b></td>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+
+    </table>
+    <script>
+        function inserisci(){
+            let codCliente=document.getElementById("codice").value;
+            if(codCliente<0)
+                return alert("Inserire un numero positivo!")
+            let consumo=parseInt(document.getElementById("consumo").value);
+            if(consumo<0)
+                return alert("Inserire un numero positivo!")
+            let iva=parseFloat(document.getElementById("iva").value);
+            let costokw=parseFloat(document.getElementById("costokw").value);
+            let canone=parseFloat(document.getElementById("canone").value);
+            let totCons=consumo*costokw;
+            let totIva=totCons*iva;
+            let totale=totCons+canone+totIva;
+            let t=document.getElementById("tab");
+            let tbody=t.children[1];
+            let stringa=tbody.innerHTML;
+            stringa+=`<tr><td>${codCliente}</td>`;
+            stringa+=`<td>${consumo}*${costokw}=${totCons.toFixed(2)}</td>`;
+            stringa+=`<td>${canone}</td>`;
+            stringa+=`<td>${totCons}*${iva*100}%=${totIva.toFixed(2)}</td>`;
+            stringa+=`<td>${totale.toFixed(2)}€</td></tr>`;
+            document.getElementById("codice").value="";
+            document.getElementById("consumo").value="";
+
+        }
+        function mostra(){
+            let codCliente=document.getElementById("codice").value;
+            let consumo=parseInt(document.getElementById("consumo").value);
+            let iva=parseFloat(document.getElementById("iva").value);
+            let costokw=parseFloat(document.getElementById("costokw").value);
+            let canone=parseFloat(document.getElementById("canone").value);
+
+            let totCons=consumo*costokw;
+            let totIva=totCons*iva;
+            let totale=totCons+canone+totIva;
+
+            let t=document.getElementById("tab");
+            let tbody=t.children[1];
+            let stringa=tbody.innerHTML;
+            stringa+=`<tr><td>${codCliente}</td>`;
+            stringa+=`<td>${consumo}*${costokw}=${totCons.toFixed(2)}</td>`;
+            stringa+=`<td>${canone}</td>`;
+            stringa+=`<td>${totCons}*${iva*100}%=${totIva.toFixed(2)}</td>`;
+            stringa+=`<td>${totale.toFixed(2)}€</td></tr>`;
+            tbody.innerHTML=stringa;
+        }
+    </script>
+</body>
+</html>

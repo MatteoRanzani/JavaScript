@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Verifica_1</title>
+    <p id="narrazione">
+        SOGGETTO OPPRESSO vuoi reagire ad oppensione esercitata da SOGGETTO OPPRESSORE? NO!<br>
+        Mancando MOTIVAZIONE per reagire a SOGGETTO OPPRESSORE. SOGGETTO OPPRESSO nel contesto SITUAZIONE rimarrai oppresso!<br>
+        SOGGETTO OPPRESSO vuoi reagire ad oppensione esercitata da SOGGETTO OPPRESSORE? SI!<br>
+        SOGGETTO OPPRESSO quale razione scegli?<br>
+        ATTENZIONE SOGGETTO OPPRESSO la scelta COMPORTAMENTO INADEGUATO ti allontana dal riuscire a mandare un FEEDBACK efficace a SOGGETTO OPPRESSORE<br>
+        :-( SOGGETTO OPPRESSOti sei allontanato troppo hai scelto la strada chiusa COMPORTAMENTO INADEGUATO e ti sei scontarto con CONSEGUENZE NEGATIVE<br>
+        SOGGETTO OPPRESSO quale razione scegli?<br>
+        SOGGETTO OPPRESSO la scelta COMPORTAMENTO ADEGUATO ti avvicina a a mandare un FEEDBACK efficace a SOGGETTO OPPRESSORE continua così!<br>
+        Coraggio ci sei quasi fai l'ultimo passo!<br>
+    </p>
+    <br>
+
+  </head>
+
+  <body>
+    <form>
+        <div class="form-group">
+          <label for="inputSoggetto">Oppresso</label>
+          <input type="text" class="form-control" id="inputSoggetto" aria-describedby="soggettoHelp" placeholder="SOGGETTO oppresso" oninput="myFunction()">
+        </div>
+        <div class="form-group">
+          <label for="inputObiettivo">Oppressore</label>
+          <input type="text" class="form-control" id="inputObiettivo" placeholder="SOGGETTO oppressore" oninput="myFunction()">
+        </div>
+        <div class="form-group">
+          <label for="inputFame">Situazione</label>
+          <input type="text" class="form-control" id="inputFame" placeholder="SITUAZIONE in cui si svolge l'azione" oninput="myFunction()">
+        </div>
+        <div class="form-group">
+          <label for="inputLabirinto">Motivazione</label>
+          <input type="text" class="form-control" id="inputLabirinto" placeholder="MOTIVAZIONE per reagire ad oppressione" oninput="myFunction()">
+        </div>
+        <div class="form-group">
+          <label for="inputStrada">Feedback</label>
+          <input type="text" class="form-control" id="inputStrada" placeholder="FEEDBACK da inviare ad oppressore" oninput="myFunction()">
+        </div>
+        <div class="form-group">
+          <label for="inputStradaOk">Strada OK</label>
+          <input type="text" class="form-control" id="inputStradaOk" placeholder="COMPORTAMENTO ADEGUATO per reagire ad oppressione" oninput="myFunction()">
+        </div>
+        <div class="form-group">
+          <label for="inputStradaKo">Strada KO</label>
+          <input type="text" class="form-control" id="inputStradaKo" placeholder="COMPORTAMENTO INADEGUATO per reagire ad oppressione" oninput="myFunction()">
+        </div>
+        <div class="form-group">
+         <label for="inputTestata">Conseguenze Negative</label>
+         <input type="text" class="form-control" id="inputTestata" placeholder="CONSEGUENZE NEGATIVE del comportamento inadeguato" oninput="myFunction()">
+        </div>
+    </form>
+
+    <script>
+        function myFunction() {
+            if(document.getElementById("inputSoggetto").value!="")
+                var soggetto=document.getElementById("inputSoggetto").value;
+            else
+                soggetto="SOGGETTO OPPRESSO"
+
+            if(document.getElementById("inputObiettivo").value!="")
+                var obiettivo=document.getElementById("inputObiettivo").value;
+            else
+                obiettivo="SOGGETTO OPPRESSORE"
+
+            if(document.getElementById("inputFame").value!="")
+                var motivazione=document.getElementById("inputFame").value;
+            else
+                motivazione="SITUAZIONE"
+
+            if(document.getElementById("inputLabirinto").value!="")
+                var contesto=document.getElementById("inputLabirinto").value;
+            else
+                contesto="MOTIVAZIONE"
+
+            if(document.getElementById("inputStrada").value!="")
+                var comportamento=document.getElementById("inputStrada").value;
+            else
+                comportamento="FEEDBACK"
+
+            if(document.getElementById("inputStradaOk").value!="")
+                var comportamentoAde=document.getElementById("inputStradaOk").value;
+            else
+                comportamentoAde="COMPORTAMENTO ADEGUATO"
+            
+            if(document.getElementById("inputStradaKo").value!="")
+                var comportamentoInade=document.getElementById("inputStradaKo").value;
+            else
+                comportamentoInade="COMPORTAMENTO INADEGUATO"
+
+            if(document.getElementById("inputTestata").value!="")
+                var testata=document.getElementById("inputTestata").value;
+            else
+                testata="CONSEGUENZE NEGATIVE"
+
+            document.getElementById("narrazione").innerText= 
+            `${soggetto} vuoi reagire ad oppensione esercitata da ${obiettivo}? NO!
+            Mancando ${motivazione} per raggiungere ${obiettivo}, ${soggetto} nel contesto ${contesto} rimarrai oppresso!!
+            ${soggetto} vuoi reagire ad oppensione esercitata da ${obiettivo}? SI!
+            ${soggetto} quale reazione scegli?
+            ATTENZIONE ${soggetto} la scelta ${comportamentoInade} ti allontana dal riuscire a mandare un ${comportamento} efficace a ${obiettivo}
+            :-( ${soggetto} ti sei allontanato troppo hai scelto la strada chiusa ${comportamentoInade} e ti sei scontarto con ${testata}
+            ${soggetto} quale reazione scegli?
+            ${soggetto} la scelta ${comportamentoAde} ti avvicina a mandare un ${comportamento} efficace a ${obiettivo} continua così!
+            Coraggio ci sei quasi fai l'ultimo passo!`
+            
+                
+            
+
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

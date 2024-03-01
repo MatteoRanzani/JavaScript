@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Spotify</title>
+</head>
+<body>
+    <table border="1" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Autore</th>
+                <th>Titolo</th>
+                <th>Copertina</th>
+                <th>Ascolta</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        
+        </tbody>
+      </table>
+
+<script>
+    var access_token = "BQB0sVwUvI3UEtdhZ4F_5zbDynME_2tsb-qH4fS2K74L527qRNYN9mToek04dPv_iouDslIIfZRivyLixypXFgoqChgdoVY-KmFKn34ffvQNlGb6yLDdadtgUD5YWILuAFLBHkovsYIy2FIB83SpMAnb8Cp6VuwssbGkw3L_IzBLd2eA7Ag-H3lbg6jEeUSjvw7Tc9p9nkbviqQAg7VvO-232cnU69focvpDwwtZIeW14CS1l0uarr4imxRIavX0IyuTLffpZW-XtX6_GVR7QE0NP-m5";
+    var album_id = "4Ff34a4maeLObapIe4K89I"
+    async function fetchAlbumData() {
+    try {
+        
+        const response = await fetch(`https://api.spotify.com/v1/albums/${album_id}`, {
+            headers: {
+                'Authorization': 'Bearer ' + access_token  // Assicurati di sostituire 'access_token' con il tuo access token effettivo
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error('Errore nella richiesta: ' + response.status);
+        }
+        const userData = await response.json();
+        return userData;
+    } catch (error) {
+        console.error('Errore durante la richiesta:', error);
+        return null;
+    }
+}     
+
+
+
+    async function renderTable() {
+        try{
+            const jsonAlbumData = await fetchAlbumData();
+            let tbody = "";
+            let riga ="";
+            console.log(jsonAlbumData)
+            /* console.log(jsonAlbumData["artists"][0]["name"])
+            console.log(jsonAlbumData["name"])
+            console.log(jsonAlbumData["image"][2]["url"])
+            console.log(jsonAlbumData["external_urls"]["spotify"]) */
+            const artista = jsonAlbumData["artists"][0]["name"];
+            const album = jsonAlbumData["name"];
+            const copertina = jsonAlbumData["images"][2]["url"];
+            const immagine ="<img src="+copertina+">";
+            const ascolta = jsonAlbumData["external_urls"]["spotify"]
+            riga += `<tr><td>${artista}</td><td>${album}</td><td><img src="${copertina}"></td><td><a target="_blank" href="${ascolta}">apri</a></td></tr>`;
+            document.getElementById("tbody").innerHTML=riga;  
+        }catch (error) {
+            console.error('Errore durante il caricamento della tabella: ',error);
+        }
+    }
+    renderTable();
+</script>
+</body>
+</html>

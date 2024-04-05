@@ -20,7 +20,7 @@
       </table>
 
 <script>
-    var access_token = "BQAon_bHCofJvju5QTnfHjdOaa8oLTKiGYJndzBofb_A112R1Pkgo-xdFbEJAx7KqLx07iaqPoorjHzdax6goVYUehO8UbwPc-W8wus7ybdYSeRBE__TqRj5zOEeVbpzcajSnkqfpQAQIPJTIJ7SxxKI0z9lxn_gJVXb0crRaIKDfH4MwL7t2V3Mt3mMkQI2say8sJDN7WYUibFApKprfQFxfmc0";
+    var access_token = "BQDNvcDQASAp1-_orquvUO-OZMBrWZ5Le_MbFTg1HvI-bq9VYC9JaSTtrJEqg4g8wTiV7e_-lQhPOCyb3gWOczr1_b0BxGrY9EwzC6N3bAHBmexm-HktIZzWtnHrXGMrl0opKrGFZBPiTn_LwH6RzvLEzB2pSyQOptvZWenEJ8qiNI3w02pP6at07D7JRHPZGwDypShzuUiQW82OlB4qMd9q6Sox";
     async function fetchAlbumData() {
     try {
         const response = await fetch(`https://api.spotify.com/v1/me/player/recently-played`, {
@@ -45,29 +45,33 @@
     async function renderTable() {
         try{
             const recenti = await fetchAlbumData();
-            let tbody = "";
-            console.log(recenti);
-            for(let i=0; i<recenti.length; i++) {
-                const artista = recenti[i].track.artists[0].name;
-                const titolo = recenti[i].track.name;
-                const album = recenti[i].track.album.images[0].url;
-                const url = recenti[i].track.external_urls.spotify;
-                const albumN = recenti[i].track.album.name;
-                const artistaId = recenti[i].track.id;
-                const albumId = recenti[i].track.album.id;
-                const artistaUrls = recenti[i].track.artista[0].external_urls.spotify;
-                const albumUrl = recenti[i].track.album.external_urls.spotify;
-
+            var tbody = "";
+            console.log(recenti.length);
+            recenti.forEach((canzone) => {
+                console.log("CIAO")
+                const artista = canzone.track.artists[0].name;
+                const titolo = canzone.track.name;
+                const album = canzone.track.album.images[0].url;
+                const url = canzone.track.external_urls.spotify;
+                const albumN = canzone.track.album.name;
+                const artistaId = canzone.track.id;
+                const albumId = canzone.track.album.id;
+                const artistaUrls = canzone.track.artists[0].external_urls.spotify;
+                const albumUrl = canzone.track.album.external_urls.spotify;
+                console.log("ciao")
 
                 tbody += "<tr>";
                 tbody += `<td><a href ="${artistaUrls}">${artista}</a></td>`;
                 tbody += `<td>${titolo}</td>`;
                 tbody += `<td><img src="${album}" alt="Copertina Album" width="90"></td>`;
-                tbody += `<td><button class="btn btn-dark" onclick="played('${url}')">Play</button></td>`;
+                tbody += `<td><button class="btn btn-dark" onclick="window.open('${url}')">Play</button></td>`;
                 tbody += `<td><a href="${albumUrl}">${albumN}</a></td>`;
                 tbody += "</tr>";
-            }
-            document.getElementById("tbody").innerHTML=tbody;
+                
+            });
+            
+            const pos = document.getElementById("tbody")
+            pos.innerHTML += tbody;
             }catch (error) {
             console.error('Errore durante il caricamento della tabella: ',error); 
         } 

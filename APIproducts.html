@@ -77,39 +77,31 @@ async function fetchAlbumData() {
         } 
     }
 
-    async function fetchAlbumData2(codice) {
-    try {
-        const response = await fetch(`https://ranzanimatteo.eu.pythonanywhere.com/products/products/${codice}`);
-        
-        if (!response.ok) {
-            throw new Error('Errore nella richiesta: ' + response.status);
-        }
-        const userData = await response.json();
-        return userData;
-    } catch (error) {
-        console.error('Errore durante la richiesta:', error);
-        return null;
-    }
-}
 
-    async function apri(codice) {
+
+    async function apri() {
         const prodotti = document.getElementById('tabella1');
         prodotti.innerHTML="";
         const prodotti2 = document.getElementById('tabella2');
         prodotti2.hidden = false;
         var tbody = "";
         try{
-            const prodotti = await fetchAlbumData2(codice);
+            const prodotti = await fetchAlbumData();
             var tbody = "";
             const prefisso = "https://eu.pythonanywhere.com/user/ranzanimatteo/files/home/ranzanimatteo/primo_progetto/uploads/";
 
-            
-                const prodotto=prodotti["products"]["name"];
-                const descrizione=prodotti["products"]["description"];
-                const immagine=prefisso+prodotti["products"]["photo"];
-                const costo=prodotti["products"]["price"];
-                const spedizione=prodotti["products"]["shipping_cost"];
-                const quantita=prodotti["products"]["quantity"];
+            for(products in prodotti["products"]) {
+
+                var codice = prodotti["products"][products]["id"];
+                const prodotto=prodotti["products"][products]["name"];
+
+                const descrizione=prodotti["products"][products]["description"];
+                const immagine=prefisso+prodotti["products"][products]["photo"];
+                
+                console.log(immagine)
+                const costo=prodotti["products"][products]["price"];
+                const spedizione=prodotti["products"][products]["shipping_cost"];
+                const quantita=prodotti["products"][products]["quantity"];
 
                 tbody += "<tr>";
                 tbody += `<td>${codice}</a></td>`;
@@ -124,7 +116,7 @@ async function fetchAlbumData() {
             const pos = document.getElementById("tbody2")
                 pos.innerHTML += tbody; 
             
-            }catch (error) {
+            }}catch (error) {
             console.error('Errore durante il caricamento della tabella: ',error); 
         } 
         renderTable();
